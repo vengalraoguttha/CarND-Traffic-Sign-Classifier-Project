@@ -94,9 +94,12 @@ observations:
 
 As a first step,
 
-1) normalized the image using equation x = (x - min(x))/(max(x)-min(x))
+1) normalized the image using equation x = (x - min(x))/(max(x)-min(x)) 
+
+  -> normalization is used to remove effect of certain domination of high value features
 
 2) agumented the data by flipping images
+  -> to make model robust and classify traffic sigals in different orientations scales etc, augmentation process is used.
 
 3) this data is given as input to convolution neural network to get the logits
 
@@ -155,7 +158,10 @@ Here are five German traffic signs that I found on the web:
 ![alt text](./img1.jpg) ![alt text](./img2.jpeg) ![alt text](./img3.jpg)
 ![alt text](./img4.jpeg) ![alt text](./img5.jpeg)
 
-The first image might be difficult to classify because ...
+These images can be difficult to classify because of :
+1) different resolutions of different images
+2) resizing to (32,32,3) leads to some information loss
+2) orientation of images might effect if models is not robust.
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
@@ -170,7 +176,7 @@ Here are the results of the prediction:
 | Children crossing  	| Road work      							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of 94.1%, in the misclassifed image the correct label is in third position on probabilities ranking. this misclassification is done because the resized image is not clear. thus model accuracy on test set and that on above 5 images are aligning.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
